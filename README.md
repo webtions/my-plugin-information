@@ -98,9 +98,11 @@ Thanks to the following contributors for helping improve this plugin:
 
 ---
 
-## Development Setup
+## Development
 
 <details><summary>Show setup instructions</summary>
+
+### Setup
 
 To contribute to the plugin and ensure your code follows coding standards:
 
