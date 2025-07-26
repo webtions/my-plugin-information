@@ -6,6 +6,9 @@ It provides a shortcode and helper functions to retrieve common fields such as `
 
 Data is pulled from the WordPress.org Plugin API, **cached locally** using transients, and **automatically refreshed every hour** to reduce API calls and ensure **fast performance**.
 
+**Reference article**: [Communicating with the WordPress.org Plugin API](https://code.tutsplus.com/communicating-with-the-wordpressorg-plugin-api--wp-33069t)
+
+
 ## Usage
 
 Use the `[mpi]` shortcode to output plugin information from WordPress.org.
@@ -145,13 +148,17 @@ Thanks to the following contributors for helping improve this plugin:
 
 ### 0.4.0 (2025-07-26)
 
-- Added support for `subfield` attribute in the shortcode
+- Added support for `subfield` attribute in the shortcode (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
 - Allows access to nested fields like `sections` and `ratings`
 - Updated readme with full usage and development instructions
 - Improved shortcode logic and fallback handling
 
 ### 0.3.0 (2015-06-24)
 
-- Code cleanup and improvements (credit: @dvankooten)
+- Code cleanup and improvements (thanks to [@dvankooten](https://profiles.wordpress.org/dvankooten/))
+
+### 0.1.0 (2013-09-30)
+
+- Initial release
 
 </details>
