@@ -93,7 +93,8 @@ class DOT_MyPluginInfo {
 		// get our variable from $atts
 		$atts = shortcode_atts( array(
 			'slug' => '', //foo is a default value
-			'field' => ''
+			'field' => '',
+			'subfield' => false
 		), $atts );
 
 		/**
@@ -109,7 +110,21 @@ class DOT_MyPluginInfo {
 		// Sanitize field attribute
 		$field = sanitize_title( $atts['field'] );
 
-		return $this->get_plugin_field( $slug, $field );
+		// If set subfield value
+		if ( $atts['subfield'] ) {
+			
+		    // Sanitize subfield attribute
+		    $subfield = sanitize_title( $atts['subfield'] );
+		
+		    // Rertrieve parent
+		    $value = $this->get_plugin_field( $slug, $field );
+			
+		    // Get subfield value
+		    return $value[$subfield];
+			
+		} else {
+		    return $this->get_plugin_field( $slug, $field );
+		}	
 	}
 
 
