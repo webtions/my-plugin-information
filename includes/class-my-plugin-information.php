@@ -117,8 +117,16 @@ class My_Plugin_Information {
 			// Sanitize the subfield key.
 			$subfield = sanitize_title( $atts['subfield'] );
 
-			// Fetch the full field (likely an array).
-			$value = $this->get_plugin_field( $slug, $field );
+			// Fetch the full plugin info object.
+			$info = $this->get_plugin_info( $slug );
+
+			// Ensure the info is a valid object and has the requested field.
+			if ( ! is_object( $info ) || ! property_exists( $info, $field ) ) {
+				return '';
+			}
+
+			// Extract the parent field value.
+			$value = $info->{$field};
 
 			// Return subfield if it exists in the array, otherwise return empty string.
 			return is_array( $value ) && isset( $value[ $subfield ] ) ? $value[ $subfield ] : '';
