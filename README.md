@@ -130,7 +130,14 @@ If you discover a security vulnerability in this plugin, please report it privat
 
 ## License
 
-This plugin is licensed under the [GPL-3.0 License](http://www.gnu.org/licenses/gpl-3.0.txt).z
+This plugin is licensed under the [GPL-3.0 License](http://www.gnu.org/licenses/gpl-3.0.txt).
+
+## Credits
+
+Thanks to the following contributors for helping improve this plugin:
+
+- [@dvankooten](https://github.com/dvankooten) – code cleanup and improvements
+- [@vyskoczilova](https://github.com/vyskoczilova) – added support for `subfield` attribute
 
 ## Changelog
 
