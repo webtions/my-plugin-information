@@ -81,9 +81,26 @@ Some fields return structured data (arrays). You can access sub-parts of these f
 
 ---
 
+## Security
+
+If you discover a security vulnerability in this plugin, please report it privately to `mail@webtions.com` so it can be addressed responsibly.
+
+## License
+
+This plugin is licensed under the [GPL-3.0 License](http://www.gnu.org/licenses/gpl-3.0.txt).
+
+## Credits
+
+Thanks to the following contributors for helping improve this plugin:
+
+- [@dvankooten](https://github.com/dvankooten) – code cleanup and improvements
+- [@vyskoczilova](https://github.com/vyskoczilova) – added support for `subfield` attribute
+
+---
+
 ## Development Setup
 
-<details><summary>Click to expand</summary>
+<details><summary>Show setup instructions</summary>
 
 To contribute to the plugin and ensure your code follows coding standards:
 
@@ -129,26 +146,9 @@ composer analyze
 
 </details>
 
----
-
-## Security
-
-If you discover a security vulnerability in this plugin, please report it privately to `mail@webtions.com` so it can be addressed responsibly.
-
-## License
-
-This plugin is licensed under the [GPL-3.0 License](http://www.gnu.org/licenses/gpl-3.0.txt).
-
-## Credits
-
-Thanks to the following contributors for helping improve this plugin:
-
-- [@dvankooten](https://github.com/dvankooten) – code cleanup and improvements
-- [@vyskoczilova](https://github.com/vyskoczilova) – added support for `subfield` attribute
-
 ## Changelog
 
-<details><summary>Click to expand</summary>
+<details><summary>View changelog</summary>
 
 ### 0.4.0 (2025-07-26)
 
