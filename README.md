@@ -83,6 +83,8 @@ Some fields return structured data (arrays). You can access sub-parts of these f
 
 ## Development Setup
 
+<details><summary>Click to expand</summary>
+
 To contribute to the plugin and ensure your code follows coding standards:
 
 1. Clone the repository:
@@ -124,6 +126,8 @@ composer analyze
 ```
 
 > This plugin follows the official [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/).
+
+</details>
 
 ---
 
