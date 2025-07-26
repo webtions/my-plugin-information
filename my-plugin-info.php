@@ -17,18 +17,20 @@
  * @package MyPluginInformation
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
-// do nothing if class is already defined
-if( class_exists( 'DOT_MyPluginInfo' ) ) {
+// Do nothing if class is already defined.
+if ( class_exists( 'My_Plugin_Information' ) ) {
 	return;
 }
 
-// require includes
-require_once dirname( __FILE__ ) . '/includes/class-my-plugin-info.php';
-require_once dirname( __FILE__ ) . '/includes/functions.php';
+// Require includes.
+require_once __DIR__ . '/includes/class-my-plugin-info.php';
+require_once __DIR__ . '/includes/functions.php';
 
-// create instance of plugin class
+// Create instance of plugin class.
 global $my_plugin_information;
-$my_plugin_information = new DOT_MyPluginInfo();
+$my_plugin_information = new My_Plugin_Information();
 $my_plugin_information->add_hooks();
