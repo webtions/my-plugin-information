@@ -12,7 +12,6 @@
  * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       my-plugin-information
- * Domain Path:       /languages
  *
  * @package MyPluginInformation
  */
@@ -27,7 +26,7 @@ if ( class_exists( 'My_Plugin_Information' ) ) {
 }
 
 // Require includes.
-require_once __DIR__ . '/includes/class-my-plugin-info.php';
+require_once __DIR__ . '/includes/class-my-plugin-information.php';
 require_once __DIR__ . '/includes/functions.php';
 
 // Create instance of plugin class.
