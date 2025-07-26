@@ -1,0 +1,43 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run PHPCS (Current File)",
+			"type": "shell",
+			"command": "/Users/harishchouhan/.composer/vendor/bin/phpcs",
+			"args": [
+				"--standard=WordPress",
+				"${file}"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Fix with PHPCBF (Current File)",
+			"type": "shell",
+			"command": "/Users/harishchouhan/.composer/vendor/bin/phpcbf",
+			"args": [
+				"--standard=WordPress",
+				"${file}"
+			],
+			"group": "none",
+			"problemMatcher": []
+		},
+		{
+			"label": "Run PHPCS (Entire Plugin)",
+			"type": "shell",
+			"command": "/Users/harishchouhan/.composer/vendor/bin/phpcs",
+			"args": [
+				"-d",
+				"memory_limit=1024M",
+				"--standard=WordPress",
+				"${workspaceFolder}"
+			],
+			"group": "none",
+			"problemMatcher": []
+		}
+	]
+}

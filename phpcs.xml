@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<ruleset name="Webtions Plugin Standards">
+	<description>Apply WordPress Coding Standards to all PHP files in Webtions plugins.</description>
+
+	<!-- Only scan PHP files -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Use cache to improve performance -->
+	<arg name="cache"/>
+
+	<!-- Set memory limit -->
+	<ini name="memory_limit" value="512M"/>
+
+	<!-- Show relative file paths -->
+	<arg name="basepath" value="./"/>
+
+	<!-- Show sniff codes in reports -->
+	<arg value="ps"/>
+
+	<!-- Run up to 20 files in parallel -->
+	<arg name="parallel" value="20"/>
+
+	<!-- Scan the current plugin directory -->
+	<file>.</file>
+
+	<!-- Apply WordPress ruleset (Core + Docs + Extra) -->
+	<rule ref="WordPress-Core"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra"/>
+
+	<!-- Downgrade strict rules to warnings -->
+	<rule ref="WordPress.PHP.YodaConditions.NotYoda">
+		<type>warning</type>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase">
+		<type>warning</type>
+	</rule>
+	<rule ref="WordPress.DB.PreparedSQL.InterpolatedNotPrepared">
+		<type>warning</type>
+	</rule>
+	<rule ref="WordPress.DB.PreparedSQL.NotPrepared">
+		<type>warning</type>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<type>warning</type>
+	</rule>
+
+	<!-- Exclude third-party and non-source folders -->
+	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>node_modules/*</exclude-pattern>
+	<exclude-pattern>build/*</exclude-pattern>
+	<exclude-pattern>assets/*</exclude-pattern>
+	<exclude-pattern>styles/*</exclude-pattern>
+
+	<!-- Skip file naming rule -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+</ruleset>

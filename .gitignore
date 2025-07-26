@@ -1,0 +1,83 @@
+# ─────────────────────────────
+# OS / System Files
+# ─────────────────────────────
+.DS_Store
+Thumbs.db
+._*
+
+# ─────────────────────────────
+# Git / Versioning
+# ─────────────────────────────
+.git/
+.github_token
+
+# ─────────────────────────────
+# Editor / Project Settings
+# ─────────────────────────────
+.vscode/*
+!.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ─────────────────────────────
+# Node / NPM / Yarn
+# ─────────────────────────────
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn.lock
+yarn-debug.log*
+yarn-error.log*
+.npm
+.eslintcache
+
+# ─────────────────────────────
+# PHP / Composer
+# ─────────────────────────────
+vendor/
+composer.lock
+.php-cs-fixer.cache
+
+# ─────────────────────────────
+# PHPStan / PHPCS Reports
+# ─────────────────────────────
+phpcs-report.xml
+phpstan-result.log
+
+# ─────────────────────────────
+# WordPress Specific
+# ─────────────────────────────
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+local-config.php
+wp-config.php
+
+# ─────────────────────────────
+# Build / Dist / Temp Files
+# ─────────────────────────────
+build/
+dist/
+*.map
+*.zip
+*.tgz
+*.rej
+*.bak
+
+# ─────────────────────────────
+# Env files
+# ─────────────────────────────
+.env
+.env.*
+
+# ─────────────────────────────
+# Naming conventions for temporary or copied files
+# ─────────────────────────────
+* copy.*
+*copy*
+* old.*
+*-old.*
+.ignore

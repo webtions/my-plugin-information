@@ -1,0 +1,43 @@
+# Handle line endings
+* text=auto
+
+# Binary files — avoid line-ending changes or diffs
+*.gif   binary
+*.ico   binary
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.webp  binary
+*.svg   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.zip   binary
+
+# Ignore dev/build files when generating GitHub ZIP exports
+/.wordpress-org/        export-ignore
+/assets/                export-ignore
+/build/                 export-ignore
+.github/                export-ignore
+.vscode/                export-ignore
+composer.json           export-ignore
+composer.lock           export-ignore
+.deployignore           export-ignore
+.editorconfig           export-ignore
+.eslintignore           export-ignore
+.gitignore              export-ignore
+.gitattributes          export-ignore
+Gruntfile.js            export-ignore
+package.json            export-ignore
+package-lock.json       export-ignore
+phpci.yml               export-ignore
+phpcs.xml               export-ignore
+phpcs.xml.dist          export-ignore
+phpstan.neon.dist       export-ignore
+phpunit.xml             export-ignore
+.prettierignore         export-ignore
+.prettierrc             export-ignore
+README.md               export-ignore
+SECURITY.md             export-ignore
+/tests/                 export-ignore
