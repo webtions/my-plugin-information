@@ -3,7 +3,7 @@
  * Plugin Name:       My Plugin Information
  * Plugin URI:        https://themeist.com/plugins/wordpress/my-plugin-information/#utm_source=wp-plugin&utm_medium=my-plugin-information&utm_campaign=plugins-page
  * Description:       Developer-focused plugin to fetch and display information from the WordPress.org Plugin API.
- * Version:           0.4
+ * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Themeist

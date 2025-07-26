@@ -152,18 +152,28 @@ composer analyze
 
 <details><summary>View changelog</summary>
 
-### 0.4.0 (2025-07-26)
+### 1.0.0 - (27 July 2025)
 
-- Added support for `subfield` attribute in the shortcode (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
-- Allows access to nested fields like `sections` and `ratings`
-- Updated readme with full usage and development instructions
-- Improved shortcode logic and fallback handling
+- Renamed main class file and updated class name to match plugin slug
+- Improved shortcode logic to safely handle `subfield` arrays with fallback
+- Added support for `subfield` attribute to fetch nested fields like `sections` and `ratings` (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
+- Fixed PHPCS issues and updated all inline comments and docblocks
+- Updated readme with full usage, changelog, and development instructions
 
-### 0.3.0 (2015-06-24)
+### 0.3.0 - (24 June 2015)
 
-- Code cleanup and improvements (thanks to [@dvankooten](https://profiles.wordpress.org/dvankooten/))
+- Simplified shortcode logic by removing hardcoded if checks for specific fields like rating, version, etc. (thanks to [@dvankooten](https://profiles.wordpress.org/dvankooten/))
+- Now all fields are fetched dynamically from the API response
 
-### 0.1.0 (2013-09-30)
+### 0.2.0 - (30 April 2014)
+
+- Added 3 new fields (thanks to [Piet from SenlinOnline.com](https://profiles.wordpress.org/senlin/))
+
+### 0.1.1 - (15 November 2013)
+
+- Structural changes to improve logic
+
+### 0.1.0 - (30 September 2013)
 
 - Initial release
 
