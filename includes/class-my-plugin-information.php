@@ -104,7 +104,8 @@ class My_Plugin_Information {
 			return '';
 		}
 
-		return $info->{$field};
+		// Format the value safely before returning.
+		return $this->format_scalar_output( $info->{$field} );
 	}
 
 	/**
@@ -129,14 +130,20 @@ class My_Plugin_Information {
 			return '';
 		}
 
-		// Sanitize the slug and field to avoid injection or malformed input.
-		$slug  = sanitize_title( $atts['slug'] );
-		$field = sanitize_title( $atts['field'] );
+		// Sanitize slug using sanitize_title().
+		$slug = sanitize_title( $atts['slug'] );
+
+		// Validate slug using stricter check (only allow a-z, 0-9, and dashes).
+		if ( ! preg_match( '/^[a-z0-9\-]+$/', $slug ) ) {
+			return '';
+		}
+
+		// Sanitize field and subfield using sanitize_key().
+		$field = sanitize_key( $atts['field'] );
 
 		// If a subfield is specified, attempt to retrieve it from the parent field.
 		if ( $atts['subfield'] ) {
-			// Sanitize the subfield key.
-			$subfield = sanitize_title( $atts['subfield'] );
+			$subfield = sanitize_key( $atts['subfield'] );
 
 			// Fetch the full plugin info object.
 			$info = $this->get_plugin_info( $slug );
@@ -150,10 +157,32 @@ class My_Plugin_Information {
 			$value = $info->{$field};
 
 			// Return subfield if it exists in the array, otherwise return empty string.
-			return is_array( $value ) && isset( $value[ $subfield ] ) ? $value[ $subfield ] : '';
+			if ( is_array( $value ) && isset( $value[ $subfield ] ) ) {
+				return $this->format_scalar_output( $value[ $subfield ] );
+			}
+
+			return '';
 		}
 
 		// Return the field directly if no subfield is specified.
 		return $this->get_plugin_field( $slug, $field );
+	}
+
+	/**
+	 * Format output to ensure it's safe and scalar.
+	 *
+	 * @param mixed $value The value to format.
+	 * @return string
+	 */
+	protected function format_scalar_output( $value ) {
+		if ( is_scalar( $value ) ) {
+			return (string) $value;
+		}
+
+		if ( is_array( $value ) || is_object( $value ) ) {
+			return wp_json_encode( $value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+		}
+
+		return '';
 	}
 }
