@@ -117,8 +117,8 @@ class My_Plugin_Information {
 	/**
 	 * Get a plugin field or subfield from the plugin info.
 	 *
-	 * @param string $slug Plugin slug.
-	 * @param string $field Top-level field name.
+	 * @param string      $slug Plugin slug.
+	 * @param string      $field Top-level field name.
 	 * @param string|null $subfield Optional subfield key if field is an array.
 	 * @return string The value as a string, or empty string on failure.
 	 */
