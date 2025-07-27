@@ -1,4 +1,4 @@
-=== My Plugin Information – Fetch Data from WordPress.org ===
+=== My Plugin Information - Fetch Data from WordPress.org ===
 Contributors: themeist, hchouhan
 Donate link: https://themeist.com/plugins/wordpress/my-plugin-information/
 Tags: plugin data, WordPress.org, shortcode, plugin info, directory
