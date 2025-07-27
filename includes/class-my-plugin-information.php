@@ -115,6 +115,34 @@ class My_Plugin_Information {
 	}
 
 	/**
+	 * Get a plugin field or subfield from the plugin info.
+	 *
+	 * @param string $slug Plugin slug.
+	 * @param string $field Top-level field name.
+	 * @param string|null $subfield Optional subfield key if field is an array.
+	 * @return string The value as a string, or empty string on failure.
+	 */
+	public function get_plugin_value( $slug, $field, $subfield = null ) {
+		$info = $this->get_plugin_info( $slug );
+
+		if ( ! is_object( $info ) || ! property_exists( $info, $field ) ) {
+			return '';
+		}
+
+		$value = $info->{$field};
+
+		if ( $subfield && is_array( $value ) && isset( $value[ $subfield ] ) ) {
+			return $this->format_scalar_output( $value[ $subfield ] );
+		}
+
+		if ( null === $subfield ) {
+			return $this->format_scalar_output( $value );
+		}
+
+		return '';
+	}
+
+	/**
 	 * Shortcode handler for [mpi].
 	 *
 	 * @param array $atts Shortcode attributes.
@@ -136,7 +164,7 @@ class My_Plugin_Information {
 			return '';
 		}
 
-		// Sanitize slug using sanitize_title().
+		// Sanitize slug using sanitize_key().
 		$slug = sanitize_key( $atts['slug'] );
 
 		// Validate slug using stricter check (only allow a-z, 0-9, and dashes).
@@ -145,33 +173,10 @@ class My_Plugin_Information {
 		}
 
 		// Sanitize field and subfield using sanitize_key().
-		$field = sanitize_key( $atts['field'] );
+		$field    = sanitize_key( $atts['field'] );
+		$subfield = $atts['subfield'] ? sanitize_key( $atts['subfield'] ) : null;
 
-		// If a subfield is specified, attempt to retrieve it from the parent field.
-		if ( $atts['subfield'] ) {
-			$subfield = sanitize_key( $atts['subfield'] );
-
-			// Fetch the full plugin info object.
-			$info = $this->get_plugin_info( $slug );
-
-			// Ensure the info is a valid object and has the requested field.
-			if ( ! is_object( $info ) || ! property_exists( $info, $field ) ) {
-				return '';
-			}
-
-			// Extract the parent field value.
-			$value = $info->{$field};
-
-			// Return subfield if it exists in the array, otherwise return empty string.
-			if ( is_array( $value ) && isset( $value[ $subfield ] ) ) {
-				return $this->format_scalar_output( $value[ $subfield ] );
-			}
-
-			return '';
-		}
-
-		// Return the field directly if no subfield is specified.
-		return $this->get_plugin_field( $slug, $field );
+		return $this->get_plugin_value( $slug, $field, $subfield );
 	}
 
 	/**
