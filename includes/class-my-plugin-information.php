@@ -42,6 +42,12 @@ class My_Plugin_Information {
 	 * @return stdClass|null Plugin info object or null on failure.
 	 */
 	public function get_plugin_info( $slug ) {
+
+		// Validate slug to allow only lowercase letters, numbers, and dashes.
+		if ( ! is_string( $slug ) || ! preg_match( '/^[a-z0-9\-]+$/', $slug ) ) {
+			return null;
+		}
+
 		// Create a unique transient name based on plugin slug.
 		$transient_name = 'mpi-' . $slug;
 
