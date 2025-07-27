@@ -66,6 +66,25 @@ class My_Plugin_Information {
 			set_transient( $transient_name, $info, $expiration );
 		}
 
+		// Add a virtual subfield for the average star rating (e.g., 4.8).
+		if (
+			is_object( $info )
+			&& property_exists( $info, 'ratings' )
+			&& is_array( $info->ratings )
+		) {
+			$total_votes  = array_sum( $info->ratings );
+			$weighted_sum = 0;
+
+			foreach ( $info->ratings as $stars => $count ) {
+				$weighted_sum += $stars * $count;
+			}
+
+			$average = ( $total_votes > 0 ) ? round( $weighted_sum / $total_votes, 1 ) : 0;
+
+			// Add average rating as a virtual subfield.
+			$info->ratings['average'] = $average;
+		}
+
 		return $info;
 	}
 
