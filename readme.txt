@@ -1,4 +1,4 @@
-=== My Plugin Information – Fetch Data from WordPress.org ===
+=== My Plugin Information - Fetch Data from WordPress.org ===
 Contributors: themeist, hchouhan
 Donate link: https://themeist.com/plugins/wordpress/my-plugin-information/
 Tags: plugin data, WordPress.org, shortcode, plugin info, directory
@@ -25,7 +25,7 @@ If you find this plugin useful, please consider [leaving a review](https://wordp
 == Installation ==
 
 1. Go to **Plugins → Add New** in your WordPress dashboard.
-2. Search for “My Plugin Information” and click **Install Now**.
+2. Search for "My Plugin Information" and click **Install Now**.
 3. Activate the plugin.
 4. Add a shortcode like `[mpi slug="plugin-slug" field="version"]` to any post, page, or widget area.
 5. Replace `plugin-slug` with the actual slug of the plugin you want to display information for.
