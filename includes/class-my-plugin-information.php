@@ -137,7 +137,7 @@ class My_Plugin_Information {
 		}
 
 		// Sanitize slug using sanitize_title().
-		$slug = sanitize_title( $atts['slug'] );
+		$slug = sanitize_key( $atts['slug'] );
 
 		// Validate slug using stricter check (only allow a-z, 0-9, and dashes).
 		if ( ! preg_match( '/^[a-z0-9\-]+$/', $slug ) ) {
