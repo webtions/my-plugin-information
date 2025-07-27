@@ -1,0 +1,33 @@
+{
+	"name": "webtions/plugin-info",
+	"type": "wordpress-plugin",
+	"description": "Developer-focused plugin to fetch and display information from the WordPress.org Plugin API.",
+	"keywords": ["WordPress", "plugin", "API", "plugin info"],
+	"homepage": "https://github.com/themeist/plugin-info",
+	"license": "GPL-3.0-or-later",
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"php-parallel-lint/php-parallel-lint": "^1.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-coding-standards/wpcs": "^3.0",
+		"phpstan/phpstan": "^1.11",
+		"szepeviktor/phpstan-wordpress": "^1.3",
+		"php-stubs/wordpress-stubs": "^6.8",
+		"php-stubs/wordpress-tests-stubs": "^6.8",
+		"phpstan/extension-installer": "^1.4"
+	},
+	"scripts": {
+		"lint": "parallel-lint --exclude vendor .",
+		"standards:check": "phpcs",
+		"standards:fix": "phpcbf",
+		"analyze": "php -d memory_limit=512M vendor/bin/phpstan analyze"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
+	}
+}

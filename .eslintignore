@@ -1,0 +1,19 @@
+# Dependency folders
+node_modules
+vendor
+
+# Build output
+build
+dist
+
+# WordPress-specific assets
+assets
+styles
+
+# Already minified files
+*.min.js
+
+# Config files (not meant to be linted)
+webpack.config.js
+babel.config.js
+vite.config.js

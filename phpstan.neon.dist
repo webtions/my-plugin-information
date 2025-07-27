@@ -1,0 +1,22 @@
+parameters:
+    level: 5
+
+    bootstrapFiles:
+        - vendor/autoload.php
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+
+    paths:
+        - .
+
+    excludePaths:
+        - vendor
+        - node_modules
+        - build
+        - assets
+        - styles
+
+    reportUnmatchedIgnoredErrors: false
+
+    ignoreErrors:
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics

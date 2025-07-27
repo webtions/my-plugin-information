@@ -1,4 +1,6 @@
 <?php
-// Silence is golden.
-
-?>
+/**
+ * Silence is golden.
+ *
+ * @package My_Plugin_Information
+ */

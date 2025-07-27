@@ -1,0 +1,35 @@
+# EditorConfig for consistent coding style across editors
+# https://EditorConfig.org
+
+root = true
+
+# Default settings
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = tab
+
+# Markdown: allow trailing whitespace for formatting
+[*.md]
+trim_trailing_whitespace = false
+
+# JSON files (npm, composer, config)
+[*.json]
+indent_style = space
+indent_size = 2
+
+# YAML files (CI/CD, composer extras)
+[*.yml]
+indent_style = space
+indent_size = 2
+
+# CSS/SCSS/JS should follow tabs if you're formatting them manually or via Prettier
+[*.{css,scss,js}]
+indent_style = tab
+
+# EditorConfig should not format minified files
+[*.min.{js,css}]
+insert_final_newline = false
+trim_trailing_whitespace = false
