@@ -52,6 +52,7 @@ Yes, there is a filter available to change the transient expiration time. Useful
 * Added `mpi_transient_expiration` filter to control cache duration
 * Added `subfield` shortcode attribute (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
 * Added support for nested fields like `sections` and `ratings`
+* Added support for retrieving average star rating using the `ratings.average` subfield, e.g. `[mpi slug="plugin-slug" field="ratings" subfield="average"]`
 * Changed transient naming format to `mpi-{slug}`
 * Renamed class file and class name to match plugin slug
 * Improved shortcode fallback handling
