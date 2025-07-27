@@ -49,12 +49,16 @@ Yes, there is a filter available to change the transient expiration time. Useful
 == Changelog ==
 
 = 1.0.0 - (27 July 2025) =
+* Added `mpi_transient_expiration` filter to control cache duration
+* Added `subfield` shortcode attribute (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
+* Added support for nested fields like `sections` and `ratings`
+* Changed transient naming format to `mpi-{slug}`
 * Renamed class file and class name to match plugin slug
-* Added support for `subfield` attribute in the shortcode (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
-* Allows access to nested fields like `sections` and `ratings`
-* Improved shortcode logic with fallback handling
-* Fixed all PHPCS issues, improved formatting and comments
-* Updated readme with full usage and development instructions
+* Improved shortcode fallback handling
+* Fixed issues reported by PHPCS and PHPStan
+* Added inline comments throughout the plugin
+* Updated readme with usage and dev instructions
+
 
 = 0.3.0 - (24 June 2015) =
 * Simplified shortcode logic by removing hardcoded if checks for specific fields like rating, version, etc. (thanks to [@dvankooten](https://profiles.wordpress.org/dvankooten/))

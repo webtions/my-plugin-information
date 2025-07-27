@@ -43,7 +43,7 @@ class My_Plugin_Information {
 	 */
 	public function get_plugin_info( $slug ) {
 		// Create a unique transient name based on plugin slug.
-		$transient_name = 'mpi' . $slug;
+		$transient_name = 'mpi-' . $slug;
 
 		// Check if a cached version of the plugin info already exists.
 		$info = get_transient( $transient_name );
@@ -60,8 +60,10 @@ class My_Plugin_Information {
 				return null;
 			}
 
-			// Cache the result in a transient for 1 hour to reduce API calls.
-			set_transient( $transient_name, $info, HOUR_IN_SECONDS );
+			// By default, plugin data is cached for 1 hour.
+			// Developers can override this using the 'mpi_transient_expiration' filter.
+			$expiration = apply_filters( 'mpi_transient_expiration', HOUR_IN_SECONDS, $slug, $transient_name );
+			set_transient( $transient_name, $info, $expiration );
 		}
 
 		return $info;

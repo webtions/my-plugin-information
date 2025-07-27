@@ -154,11 +154,15 @@ composer analyze
 
 ### 1.0.0 - (27 July 2025)
 
-- Renamed main class file and updated class name to match plugin slug
-- Improved shortcode logic to safely handle `subfield` arrays with fallback
-- Added support for `subfield` attribute to fetch nested fields like `sections` and `ratings` (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
-- Fixed PHPCS issues and updated all inline comments and docblocks
-- Updated readme with full usage, changelog, and development instructions
+- Added `mpi_transient_expiration` filter to control cache duration
+- Added `subfield` shortcode attribute (thanks to [@vyskoczilova](https://profiles.wordpress.org/vyskoczilova/))
+- Added support for nested fields like `sections` and `ratings`
+- Changed transient naming format to `mpi-{slug}`
+- Renamed class file and class name to match plugin slug
+- Improved shortcode fallback handling
+- Fixed issues reported by PHPCS and PHPStan
+- Added inline comments throughout the plugin
+ Updated readme with usage and dev instructions
 
 ### 0.3.0 - (24 June 2015)
 
