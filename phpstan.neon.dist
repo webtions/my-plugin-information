@@ -12,8 +12,7 @@ parameters:
         - vendor
         - node_modules
         - build
-        - assets
-        - styles
+        - .wordpress-org
 
     reportUnmatchedIgnoredErrors: false
 

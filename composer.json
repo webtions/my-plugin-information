@@ -1,9 +1,9 @@
 {
-	"name": "webtions/plugin-info",
+	"name": "webtions/my-plugin-information",
 	"type": "wordpress-plugin",
 	"description": "Developer-focused plugin to fetch and display information from the WordPress.org Plugin API.",
 	"keywords": ["WordPress", "plugin", "API", "plugin info"],
-	"homepage": "https://github.com/themeist/plugin-info",
+	"homepage": "https://github.com/webtions/my-plugin-information",
 	"license": "GPL-3.0-or-later",
 	"require": {
 		"php": ">=7.4"
