@@ -17,13 +17,12 @@
 
 # Ignore dev/build files when generating GitHub ZIP exports
 /.wordpress-org/        export-ignore
-/assets/                export-ignore
 /build/                 export-ignore
 .github/                export-ignore
 .vscode/                export-ignore
 composer.json           export-ignore
 composer.lock           export-ignore
-.deployignore           export-ignore
+.distignore             export-ignore
 .editorconfig           export-ignore
 .eslintignore           export-ignore
 .gitignore              export-ignore
