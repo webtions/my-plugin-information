@@ -38,7 +38,7 @@ class My_Plugin_Information {
 	/**
 	 * Get plugin information from WordPress.org.
 	 *
-	 * @param string $slug The WordPress.org slug of the plugin.
+	 * @param mixed $slug The WordPress.org slug of the plugin. Validated before use.
 	 * @return stdClass|null Plugin info object or null on failure.
 	 */
 	public function get_plugin_info( $slug ) {
