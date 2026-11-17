@@ -5,7 +5,7 @@ Tags: plugin data, WordPress.org, shortcode, plugin info, directory
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPL-3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -47,6 +47,11 @@ The plugin uses transients and fetches fresh data from WordPress.org every hour 
 Yes, there is a filter available to change the transient expiration time. Useful if you want shorter or longer cache duration depending on your needs.
 
 == Changelog ==
+
+= 1.0.1 - (17 November 2026) =
+* Changed: Minimum PHP version is now 8.2
+* Tested up to WordPress 7.1
+* Improved: Corrected the documented type of the slug argument
 
 = 1.0.0 - (27 July 2025) =
 * Added `mpi_transient_expiration` filter to control cache duration
