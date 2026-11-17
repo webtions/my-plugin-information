@@ -1,6 +1,11 @@
 parameters:
     level: 5
 
+    # Supported PHP range (keep in step with "Requires PHP").
+    phpVersion:
+        min: 80200
+        max: 80500
+
     bootstrapFiles:
         - vendor/autoload.php
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
@@ -10,8 +15,8 @@ parameters:
 
     excludePaths:
         - vendor
-        - node_modules
-        - build
+        - node_modules (?)
+        - build (?)
         - .wordpress-org
 
     reportUnmatchedIgnoredErrors: false

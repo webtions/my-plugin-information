@@ -28,6 +28,13 @@
 	<rule ref="WordPress-Docs"/>
 	<rule ref="WordPress-Extra"/>
 
+	<!-- Check compatibility with the supported PHP range (keep in step with "Requires PHP"). -->
+	<config name="testVersion" value="8.2-"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Minimum supported WordPress version (keep in step with "Requires at least"). -->
+	<config name="minimum_wp_version" value="6.0"/>
+
 	<!-- Downgrade strict rules to warnings -->
 	<rule ref="WordPress.PHP.YodaConditions.NotYoda">
 		<type>warning</type>
