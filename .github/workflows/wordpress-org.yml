@@ -1,0 +1,122 @@
+name: WordPress.org
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/wordpress-org.yml'
+      - '.github/scripts/sync-wordpress-assets.sh'
+      - '.github/scripts/sync-wordpress-readme.sh'
+      - '.distignore'
+      - '.wordpress-org/**'
+      - 'readme.txt'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.wordpress-org/**', 'readme.txt']
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: read
+
+env:
+  SLUG: my-plugin-information
+  SVN_URL: https://plugins.svn.wordpress.org/my-plugin-information
+  ASSETS_URL: https://plugins.svn.wordpress.org/my-plugin-information/assets/
+  # The dedicated assets step reads the latest main, including during a tagged release.
+  ASSETS_DIR: .github/unused-release-assets
+
+jobs:
+  preview:
+    name: Preview release package and directory assets
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build a release preview without committing to SVN
+        id: package
+        uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0
+        with:
+          dry-run: true
+          generate-zip: true
+        env:
+          VERSION: 0.0.0
+          # This action version checks for nonempty values before honoring dry-run.
+          SVN_USERNAME: dry-run
+          SVN_PASSWORD: dry-run
+      - name: Check the plugin ZIP
+        env:
+          ZIP_PATH: ${{ steps.package.outputs.zip-path }}
+        run: |
+          unzip -Z1 "$ZIP_PATH" > "$RUNNER_TEMP/my-plugin-information-package.txt"
+          for file in my-plugin-info.php readme.txt index.php includes/functions.php; do
+            grep -Fx "my-plugin-information/$file" "$RUNNER_TEMP/my-plugin-information-package.txt"
+          done
+          if grep -E '^my-plugin-information/(\.github|\.wordpress-org|\.git|\.distignore)(/|$)' "$RUNNER_TEMP/my-plugin-information-package.txt"; then
+            exit 1
+          fi
+      - name: Preview directory asset changes
+        run: bash .github/scripts/sync-wordpress-assets.sh .wordpress-org "$ASSETS_URL"
+      - name: Preview readme changes
+        run: bash .github/scripts/sync-wordpress-readme.sh readme.txt "$SVN_URL"
+
+  ci:
+    name: CI
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    name: Publish to WordPress.org
+    needs: ci
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: wordpress-org
+      queue: max
+    steps:
+      - name: Install Subversion
+        run: |
+          if ! command -v svn >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y subversion
+          fi
+      - name: Check out the release tag
+        if: github.ref_type == 'tag'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check the tagged version
+        if: github.ref_type == 'tag'
+        run: |
+          version="$GITHUB_REF_NAME"
+          plugin_version=$(sed -nE 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*([^[:space:]]+).*/\1/p' my-plugin-info.php)
+          stable_tag=$(sed -nE 's/^Stable [Tt]ag:[[:space:]]*([^[:space:]]+).*/\1/p' readme.txt)
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ || "$version" != "$plugin_version" || "$version" != "$stable_tag" ]]; then
+            echo "The Git tag, plugin Version, and readme Stable tag must match." >&2
+            exit 1
+          fi
+      - name: Publish the tagged plugin release
+        if: github.ref_type == 'tag'
+        uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+      - name: Check out the current directory assets
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Publish directory assets
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        run: bash .github/scripts/sync-wordpress-assets.sh .wordpress-org "$ASSETS_URL" --commit
+      - name: Publish readme changes
+        # A tag release already ships the readme, so this only runs for pushes to main.
+        if: github.ref_type == 'branch'
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        run: bash .github/scripts/sync-wordpress-readme.sh readme.txt "$SVN_URL" --commit
